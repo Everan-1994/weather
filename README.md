@@ -175,9 +175,9 @@ array | string   getWeather(string $city, string $type = 'base', string $format 
 	.
 	.
 	.
-	 'weather' => [
-		'key' => env('WEATHER_API_KEY'),
-    ],
+	'weather' => [
+	    'key' => env('WEATHER_API_KEY'),
+        ],
 ```
 
 然后在 `.env` 中配置 `WEATHER_API_KEY` ：
@@ -196,7 +196,7 @@ WEATHER_API_KEY=xxxxxxxxxxxxxxxxxxxxx
 	.
 	public function edit(Weather $weather) 
 	{
-		$response = $weather->getWeather('深圳');
+	    $response = $weather->getWeather('深圳');
 	}
 	.
 	.
@@ -211,7 +211,7 @@ WEATHER_API_KEY=xxxxxxxxxxxxxxxxxxxxx
 	.
 	public function edit() 
 	{
-		$response = app('weather')->getWeather('深圳');
+	    $response = app('weather')->getWeather('深圳');
 	}
 	.
 	.
