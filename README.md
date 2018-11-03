@@ -5,7 +5,7 @@
 ## 安装
 
 ```sh
-$ composer require overtrue/weather -vvv
+$ composer require everan/weather -vvv
 ```
 
 ## 配置
@@ -15,7 +15,7 @@ $ composer require overtrue/weather -vvv
 ## 使用
 
 ```php
-use Overtrue\Weather\Weather;
+use Everan\Weather\Weather;
 
 $key = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
@@ -45,7 +45,7 @@ $response = $weather->getWeather('深圳');
             "winddirection": "西南",
             "windpower": "5",
             "humidity": "94",
-            "reporttime": "2018-08-21 16:00:00"
+            "reporttime": "2018-11-03 11:00:00"
         }
     ]
 }
@@ -69,10 +69,10 @@ $response = $weather->getWeather('深圳', 'all');
             "city": "深圳市", 
             "adcode": "440300", 
             "province": "广东", 
-            "reporttime": "2018-08-21 11:00:00", 
+            "reporttime": "2018-11-03 11:00:00", 
             "casts": [
                 {
-                    "date": "2018-08-21", 
+                    "date": "2018-11-03", 
                     "week": "2", 
                     "dayweather": "雷阵雨", 
                     "nightweather": "雷阵雨", 
@@ -84,7 +84,7 @@ $response = $weather->getWeather('深圳', 'all');
                     "nightpower": "≤3"
                 }, 
                 {
-                    "date": "2018-08-22", 
+                    "date": "2018-11-04", 
                     "week": "3", 
                     "dayweather": "雷阵雨", 
                     "nightweather": "雷阵雨", 
@@ -96,7 +96,7 @@ $response = $weather->getWeather('深圳', 'all');
                     "nightpower": "≤3"
                 }, 
                 {
-                    "date": "2018-08-23", 
+                    "date": "2018-11-05", 
                     "week": "4", 
                     "dayweather": "雷阵雨", 
                     "nightweather": "雷阵雨", 
@@ -108,7 +108,7 @@ $response = $weather->getWeather('深圳', 'all');
                     "nightpower": "≤3"
                 }, 
                 {
-                    "date": "2018-08-24", 
+                    "date": "2018-11-06", 
                     "week": "5", 
                     "dayweather": "雷阵雨", 
                     "nightweather": "雷阵雨", 
@@ -151,7 +151,7 @@ $response = $weather->getWeather('深圳', 'all', 'xml');
             <winddirection>西南</winddirection>
             <windpower>5</windpower>
             <humidity>94</humidity>
-            <reporttime>2018-08-21 16:00:00</reporttime>
+            <reporttime>2018-11-03 11:00:00</reporttime>
         </live>
     </lives>
 </response>
@@ -186,7 +186,7 @@ array | string   getWeather(string $city, string $type = 'base', string $format 
 WEATHER_API_KEY=xxxxxxxxxxxxxxxxxxxxx
 ```
 
-可以用两种方式来获取 `Overtrue\Weather\Weather` 实例：
+可以用两种方式来获取 `Everan\Weather\Weather` 实例：
 
 #### 方法参数注入
 
