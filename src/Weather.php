@@ -11,15 +11,14 @@ class Weather
     protected $key;
     protected $guzzleOptions = [];
 
-    /**
-     * Weather constructor.
-     * @param string $key
-     */
-    public function __construct(string $key)
+    public function __construct($key)
     {
         $this->key = $key;
     }
 
+    /**
+     * @return Client
+     */
     public function getHttpClient()
     {
         return new Client($this->guzzleOptions);
@@ -32,29 +31,34 @@ class Weather
 
     /**
      * @param $city
-     * @param string|null $type
-     * @param string|null $format
+     * @param string $type
+     * @param string $format
      * @return mixed|string
      * @throws HttpException
      * @throws InvalidArgumentException
      */
-    public function getWeather($city, string $type = 'base', string $format = 'json')
+    public function getWeather($city, $type = 'live', $format = 'json')
     {
         $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
 
+        $types = [
+            'live'     => 'base',
+            'forecast' => 'all',
+        ];
+
         if (!\in_array(\strtolower($format), ['xml', 'json'])) {
-            throw new InvalidArgumentException('Invalid response format: '.$format);
+            throw new InvalidArgumentException('Invalid response format: ' . $format);
         }
 
-        if (!\in_array(\strtolower($type), ['base', 'all'])) {
-            throw new InvalidArgumentException('Invalid type value(base/all): '.$type);
+        if (!\array_key_exists(\strtolower($type), $types)) {
+            throw new InvalidArgumentException('Invalid type value(live/forecast): ' . $type);
         }
 
         $query = array_filter([
-            'key' => $this->key,
-            'city' => $city,
-            'output' => \strtolower($format),
-            'extensions' =>  \strtolower($type),
+            'key'        => $this->key,
+            'city'       => $city,
+            'output'     => \strtolower($format),
+            'extensions' => \strtolower($types[$type]),
         ]);
 
         try {
@@ -67,5 +71,15 @@ class Weather
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }
 
+    }
+
+    public function getLiveWeather($city, $format = 'json')
+    {
+        return $this->getWeather($city, 'live', $format);
+    }
+
+    public function getForecastsWeather($city, $format = 'json')
+    {
+        return $this->getWeather($city, 'forecast', $format);
     }
 }
